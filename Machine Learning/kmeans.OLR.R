@@ -1,11 +1,11 @@
 libs <- c("pracma", "metR", "sf", "rgdal", "ggthemes", "ggplot2")
 lapply(libs, library, character.only = TRUE)
 
-msk <- readOGR("~/detroit/oettli/NaturalEarthData/","ne_110m_land_GCM")
+msk <- readOGR(".","ne_110m_land_GCM")
 ne_110m_coast <- as(msk, "SpatialPolygonsDataFrame")
 
 
-load("/Volumes/HD-PGF-A/Mac mini (2018)/pascaloettli/detroit/oettli/OLR/folr.passband.pentad.mean.Rdata")
+load("folr.passband.pentad.mean.Rdata")
 OLR.filt.passband <- OLR.filt.passband[,73:1,]
 lat <- lat[73:1]
 
