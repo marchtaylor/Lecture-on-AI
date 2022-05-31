@@ -1,5 +1,5 @@
 options(java.parameters = "-Xmx20g")
-libs <- c("caret")
+libs <- c("caret", "bartMachine")
 lapply(libs, library, character.only = TRUE)
 Sys.setenv(TZ = "GMT")
 
@@ -8,7 +8,7 @@ load("/Users/pascaloettli/Lecture/GIT/Lecture-on-AI/Machine Learning/Data_for_ca
 
 
 tuneLength <- 10  # Number of times the parameters are randomly selected
-number <- 500      # Number of resampling iterations
+number <- 50      # Number of resampling iterations
 
 preProcess <- "range"  # Pre-processing of the predictor data
 # preProcess <- c("center", "scale")
@@ -16,9 +16,11 @@ preProcess <- "range"  # Pre-processing of the predictor data
 
 # Algorithm parameters
 tgrid <- data.frame(
-  layer1 = sample(2:20, replace = TRUE, size = tuneLength)
-  ,layer2 = sample(c(0, 2:20), replace = TRUE, size = tuneLength)
-  ,layer3 = sample(c(0, 2:20), replace = TRUE, size = tuneLength)
+  num_trees = sample(10:100, replace = TRUE, size = tuneLength)
+  , k = runif(tuneLength, min = 0, max = 5)
+  , alpha = runif(tuneLength, min = .9, max = 1)
+  , beta = runif(tuneLength, min = 0, max = 4)
+  , nu = runif(tuneLength, min = 0, max = 5)
 )
 
 
@@ -26,23 +28,26 @@ TrC_boot632 <- trainControl(
   method = "boot632"                    # Resampling method 
   , search = "grid"                     # Pickup parameter in user-defined parameters
   , number = number                     # Number of resampling iterations
-  , summaryFunction = defaultSummary    # Afunction to compute performance metrics across resamples
+  , summaryFunction = defaultSummary    # A function to compute performance metrics across resamples
   , savePredictions = "all"
   , returnResamp = "all"
   , allowParallel = TRUE
 )
 
-mlp.out <- 
+bart.out <- 
   train(x = x.Calib.DATA
         , y = y.Calib.DATA
         , trControl = TrC_boot632
         , tuneGrid = tgrid              # Data frame of random parameters defined above
-        , method = "mlpML"              # Name of the algorithm
+        , method = "bartMachine"        # Name of the algorithm
         , metric = "RMSE"               # Name of the metric to find the best model
         , maximize = FALSE
         , preProcess = preProcess       
-        , linout = TRUE
+        , mem_cache_for_speed = FALSE   
+        , serialize = TRUE
+        , verbose = FALSE
   )
 
-predict(bart.out, x.Valid.DATA)
+predict(bart.out, x.Valid.DATA)         # Prediction on validation subset
+
 

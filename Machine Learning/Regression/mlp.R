@@ -1,4 +1,4 @@
-libs <- c("caret", "catboost")
+libs <- c("caret")
 lapply(libs, library, character.only = TRUE)
 Sys.setenv(TZ = "GMT")
 
@@ -7,7 +7,7 @@ load("/Users/pascaloettli/Lecture/GIT/Lecture-on-AI/Machine Learning/Data_for_ca
 
 
 tuneLength <- 10  # Number of times the parameters are randomly selected
-number <- 50      # Number of resampling iterations
+number <- 500      # Number of resampling iterations
 
 preProcess <- "range"  # Pre-processing of the predictor data
 # preProcess <- c("center", "scale")
@@ -15,34 +15,33 @@ preProcess <- "range"  # Pre-processing of the predictor data
 
 # Algorithm parameters
 tgrid <- data.frame(
-  depth = sample.int(tuneLength, tuneLength, replace = TRUE)
-  , learning_rate = runif(tuneLength, min = 1e-6, max = 1)
-  , iterations = rep(100, tuneLength)
-  , l2_leaf_reg = sample(c(1e-1, 1e-3, 1e-6), tuneLength, replace = TRUE)
-  , rsm = sample(c(1., 0.9, 0.8, 0.7), tuneLength, replace = TRUE)
-  , border_count = sample(c(255), tuneLength, replace = TRUE)
+  layer1 = sample(2:20, replace = TRUE, size = tuneLength)
+  ,layer2 = sample(c(0, 2:20), replace = TRUE, size = tuneLength)
+  ,layer3 = sample(c(0, 2:20), replace = TRUE, size = tuneLength)
 )
+
 
 TrC_boot632 <- trainControl(
   method = "boot632"                    # Resampling method 
   , search = "grid"                     # Pickup parameter in user-defined parameters
   , number = number                     # Number of resampling iterations
-  , summaryFunction = defaultSummary    # Afunction to compute performance metrics across resamples
+  , summaryFunction = defaultSummary    # A function to compute performance metrics across resamples
   , savePredictions = "all"
   , returnResamp = "all"
   , allowParallel = TRUE
 )
 
-catboost.out <- 
+mlp.out <- 
   train(x = x.Calib.DATA
         , y = y.Calib.DATA
         , trControl = TrC_boot632
         , tuneGrid = tgrid              # Data frame of random parameters defined above
-        , method = catboost.caret       # Name of the algorithm
+        , method = "mlpML"              # Name of the algorithm
         , metric = "RMSE"               # Name of the metric to find the best model
         , maximize = FALSE
         , preProcess = preProcess       
+        , linout = TRUE
   )
 
-predict(catboost.out, x.Valid.DATA)
+predict(mlp.out, x.Valid.DATA)
 
