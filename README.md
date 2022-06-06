@@ -1,11 +1,14 @@
 Associated scripts and data
 
 Alpaydin, E., 2021: Machine learning. Revised and updated edition. The MIT Press, 255 pp.
+
 Amari, S., 1980: Topographic organization of nerve fields. Bulletin of Mathematical Biology, 42, 339–364, 
 https://doi.org/10.1016/S0092-8240(80)80055-3.
+
 Carvalho, M. J., P. Melo-Gonçalves, J. C. Teixeira, and A. Rocha, 2016: Regionalization of Europe based on a K-Means 
 Cluster Analysis of the climate change of temperatures and precipitation. Phys. Chem. Earth Parts A/B/C, 94, 22–28, 
 https://doi.org/10.1016/j.pce.2016.05.001.
+
 Chattopadhyay, R., A. Vintzileos, and C. Zhang, 2013: A description of the Madden–Julian oscillation based on a 
 self-organizing map. J. Clim., 26, 1716–1732, https://doi.org/10.1175/JCLI-D-12-00123.1.
 Chollet, F., 2018: Deep learning with Python. Manning Publications Co, 361 pp.
