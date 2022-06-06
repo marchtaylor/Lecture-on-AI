@@ -18,16 +18,17 @@ num_hiddf <- 8       # total number of neurons; possible choice: 8, 9, 10
 lr_value <- LRs[20]  # learning rate; pick inside LRs
 
 fl <- paste0("C", sprintf("%02d", num_convf1), "C", sprintf("%02d", num_convf2), "D", sprintf("%02d", num_hiddf))
-fl <- paste0(fl,"-lr_",sprintf("%g", lr_value),".hdf5")
+fl <- paste0(fl,"-lr_",sprintf("%g", lr_value))
+fl <- paste0(fl,".hdf5")
 model <- load_model_hdf5(filepath = paste(MAINDIR, fl, sep = "/"))
 
 load(paste0(MAINDIR,"/IO.SST_ERSST.v5.",lag,".RData"))
 
 
 idx <- which(Dates_train %in% as.Date("1961-09-01"))
-img <- x_train[idx,,,,drop=FALSE]    # sample of SST with 3 channels
+img_tensor <- x_train[idx,,,,drop=FALSE]    # sample of SST with 3 channels
 
-preds <- model$predict(img)        # prediction for 1 sample
+preds <- model$predict(img_tensor)        # prediction for 1 sample
 
 SST_output <- model$output[, which.max(preds[1,])]
 
@@ -41,7 +42,7 @@ pooled_grads <- k_mean(grads, axis = c(1, 2, 3))
 iterate <- k_function(list(model$input),
                       list(pooled_grads, last_conv_layer$output[1,,,])) 
 
-c(pooled_grads_value, conv_layer_output_value) %<-% iterate(list(img))
+c(pooled_grads_value, conv_layer_output_value) %<-% iterate(list(img_tensor))
 
 for (i in 1:num_convf1) {
   conv_layer_output_value[,,i] <- 
@@ -52,10 +53,7 @@ heatmap <- apply(conv_layer_output_value, c(1,2), mean)
 
 heatmap <- pmax(heatmap, 0) 
 heatmap <- heatmap / max(heatmap)
-# heatmap[heatmap == 0] <- NA
 
-image(seq(30,135,5), seq(-67.5,27.5,5), heatmap)
-contour(seq(30,135,5), seq(-67.5,27.5,5), as.matrix(img[,,,1]), add = TRUE)
 
 libs <- c("metR", "sf", "rgdal", "ggthemes", "ggplot2")
 lapply(libs, library, character.only = TRUE)
@@ -64,15 +62,21 @@ msk <- readOGR("~/Lecture/GIT/Lecture-on-AI/Machine Learning/Clustering/","ne_11
 ne_110m_coast <- as(msk, "SpatialPolygonsDataFrame")
 
 
-grid <- expand.grid(lon = seq(30,135,5), lat = seq(-67.5,27.5,5))
-grid$SSTPOS <- as.vector(img_tensor[,,,1]); grid$SSTPOS[grid1$SSTPOS < 0] <- 0 
-grid$SSTNEG <- as.vector(img_tensor[,,,1]); grid$SSTNEG[grid1$SSTNEG >= 0] <- 0 
+lon1 <- seq(30,135,5)
+lat1 <- seq(-67.5,27.5,5)
+
+grid1 <- expand.grid(lon = lon1, lat = lat1, lag = -3:-1)
+grid1$SSTPOS <- as.vector(img_tensor[,,,3:1]); grid1$SSTPOS[grid1$SSTPOS < 0] <- 0 
+grid1$SSTNEG <- as.vector(img_tensor[,,,3:1]); grid1$SSTNEG[grid1$SSTNEG >= 0] <- 0 
+
+grid <- expand.grid(lon = lon1, lat = lat1)
 grid$heatmap <- as.vector(heatmap)
 
 ggplot(data = grid, aes(x=lon, y=lat)) +
   geom_raster(aes(fill = heatmap)) +
-  geom_contour2(aes(z = SSTPOS, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 1) +
-  geom_contour2(aes(z = SSTNEG, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 2) +
+  geom_contour2(data = grid1, aes(z = SSTPOS, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 1) +
+  geom_contour2(data = grid1, aes(z = SSTNEG, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 2) +
+  facet_grid(.~lag, switch = "y") +
   scale_fill_divergent(
     breaks = MakeBreaks(binwidth = 0.2, exclude = 0), 
     low = "blue", 
@@ -87,5 +91,6 @@ ggplot(data = grid, aes(x=lon, y=lat)) +
                fill = "white",
                size = 0.5
   ) +
-  scale_x_longitude(breaks = seq(30,360,60)) +
-  scale_y_latitude(breaks = seq(-60,60,30))
+  scale_x_longitude(breaks = seq(30,360,30)) +
+  scale_y_latitude(breaks = seq(-60,60,30)) +
+  theme_gray(base_size = 25)

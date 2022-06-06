@@ -34,12 +34,12 @@ cf2 <- c(3L, 3L)          # size of the convolutional filter #2
 pl1_size <- c(2L, 2L)     # size of the pooling layer to extract the largest value
 pl2_size <- c(2L, 2L)　　 # size of the pooling layer to extract the largest value
 strd_size <- c(1L, 1L)
-conv_drop <- 0
+conv_drop <- 0.5          # ~50% of units dropped
 # Possible choice of learning rate
 LRs <- c(0.05, 0.04, 0.03, 0.02, 0.01, 0.009, 0.008, 0.007, 0.006, 0.005, 0.004, 0.003, 0.002, 0.001, 0.0009, 0.0008, 0.0007, 0.0006, 0.0005, 0.0001)
 dc_value <- 0.9
-batch_size <- 24                    # size of the mini batch for each epoch
-epoch_size <- 1999                  # number of an epoch
+batch_size <- 24                    # size of the mini batch (i.e., number of samples/time step) for each epoch
+epoch_size <- 500                   # number of epochs (i.e., number of time the complete train subset is seen)
 sample_size <- dim(x_train)[1]      # total number of time samples to train for the CNN model
 input_shape <- c(xdim, ydim, zdim)  # size of the input
 
@@ -101,12 +101,13 @@ history <- model %>% fit(
   x_train 
   , y_train
   , batch_size = batch_size
-  , epochs = 100
+  , epochs = 500
   , validation_data = list(x_test, y_test)
 )
 
 fl <- paste0("C", sprintf("%02d", num_convf1), "C", sprintf("%02d", num_convf2), "D", sprintf("%02d", num_hiddf))
-fl <- paste0(fl,"-lr_",sprintf("%g", lr_value),".hdf5")
+fl <- paste0(fl,"-lr_",sprintf("%g", lr_value))
+fl <- paste0(fl,".hdf5")
 save_model_hdf5(object = model, filepath = paste(MAINDIR, fl, sep = "/"))
 
 plot(history)
@@ -119,6 +120,8 @@ obs_train <- xts(y_train, Dates_train)
 obs_test <- xts(y_test, Dates_test)
 obs_valid <- xts(y_valid, Dates_valid)
 
+autoplot(cbind(obs_train, pred_train), facet = NULL)
+autoplot(cbind(obs_valid, pred_valid), facet = NULL)
 autoplot(cbind(obs_test, pred_test), facet = NULL)
 
 
