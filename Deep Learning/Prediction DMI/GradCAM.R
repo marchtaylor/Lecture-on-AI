@@ -21,7 +21,6 @@ fl <- paste0("C", sprintf("%02d", num_convf1), "C", sprintf("%02d", num_convf2),
 fl <- paste0(fl,"-lr_",sprintf("%g", lr_value),".hdf5")
 model <- load_model_hdf5(filepath = paste(MAINDIR, fl, sep = "/"))
 
-lag <- -1  # lag, currently -1, -3 and -7
 load(paste0(MAINDIR,"/IO.SST_ERSST.v5.",lag,".RData"))
 
 
@@ -66,14 +65,14 @@ ne_110m_coast <- as(msk, "SpatialPolygonsDataFrame")
 
 
 grid <- expand.grid(lon = seq(30,135,5), lat = seq(-67.5,27.5,5))
-grid$SSTPOS <- as.vector(img[,,,1]); grid$SSTPOS[grid$SSTPOS >= 0] <- 0 
-grid$SSTNEG <- as.vector(img[,,,1]); grid$SSTNEG[grid$SSTNEG < 0] <- 0 
+grid$SSTPOS <- as.vector(img_tensor[,,,1]); grid$SSTPOS[grid1$SSTPOS < 0] <- 0 
+grid$SSTNEG <- as.vector(img_tensor[,,,1]); grid$SSTNEG[grid1$SSTNEG >= 0] <- 0 
 grid$heatmap <- as.vector(heatmap)
 
 ggplot(data = grid, aes(x=lon, y=lat)) +
   geom_raster(aes(fill = heatmap)) +
-  geom_contour2(aes(z = SSTPOS, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 2) +
-  geom_contour2(aes(z = SSTNEG, label = ..level..), breaks = MakeBreaks(binwidth = 0.2), exclude = 0, linetype = 1) +
+  geom_contour2(aes(z = SSTPOS, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 1) +
+  geom_contour2(aes(z = SSTNEG, label = ..level..), breaks = MakeBreaks(binwidth = 0.2, exclude = 0), linetype = 2) +
   scale_fill_divergent(
     breaks = MakeBreaks(binwidth = 0.2, exclude = 0), 
     low = "blue", 

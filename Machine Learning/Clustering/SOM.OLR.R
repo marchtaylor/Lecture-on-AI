@@ -1,87 +1,48 @@
+# Loading the required R packages
 libs <- c("pracma", "metR", "sf", "rgdal", "ggthemes", "ggplot2", "kohonen", "raster", "rgeos")
 lapply(libs, library, character.only = TRUE)
 
+# Setting the working directory, with the  data used 
+setwd("~/Lecture/GIT/Lecture-on-AI/Machine Learning/Clustering/")
+
+# Free vector and raster map data @ naturalearthdata.com.
 msk <- readOGR(".","ne_110m_land_GCM")
 ne_110m_coast <- as(msk, "SpatialPolygonsDataFrame")
 
+
+# Loading the filtered OLR data
 load("folr.passband.pentad.mean.Rdata")
-OLR.filt.passband <- OLR.filt.passband[,73:1,]
+OLR.filt.passband <- OLR.filt.passband[,73:1,]  # Changing the latitudes order
 lat <- lat[73:1]
 
-idx.lat <- lat >= -17.5 & lat <= 22.5
+idx.lat <- lat >= -17.5 & lat <= 22.5   # Selecting latitudes of interest
 
+# Extracting the tropical band
 OLR <- OLR.filt.passband[,idx.lat,]
-OLR <- t(Reshape(OLR, 144*sum(idx.lat), 2190))
+OLR <- t(Reshape(OLR, length(lon)*sum(idx.lat), 2190))
 
-
+# Defining the grid
 xdim <- 4
 ydim <- 4
 n.centers <- xdim*ydim
-som.grid <- somgrid(xdim = xdim, ydim = ydim, topo = "rect", neighbourhood.fct = "gaussian")
-som.out <- som(OLR, grid = som.grid, rlen = 999, dist.fcts = "sumofsquares")
-# som.out <- som(OLR, grid = somgrid(xdim, ydim, "rect"), rlen = 5000, alpha = c(.5, .1))
+som.grid <- somgrid(
+  xdim = xdim, 
+  ydim = ydim,
+  topo = "rect", 
+  neighbourhood.fct = "gaussian"
+)
 
+# Runing the SOM
+som.out <- som(
+  OLR, 
+  grid = som.grid, 
+  rlen = 999,
+  alpha = c(0.05, 0.01),
+  radius <- c(2, 0),
+  dist.fcts = "sumofsquares"
+)
 
-
-grid <- setNames(expand.grid(lon, lat[idx.lat], 1:n.centers, stringsAsFactors = FALSE), c("lon", "lat", "k"))
-grid$OLR <- NA
-for(ii in 1:n.centers){
-  grid[grid$k == ii, "OLR"] <- as.vector(som.out$codes[[1]][ii,])
-}
-grid <- merge(grid, cbind(k=1:16, expand.grid(x=1:4, y=LETTERS[1:4])))
-grid$z <- 0
-
-ggplot(data = grid, aes(x=lon, y=lat, z=OLR)) +
-  geom_contour_fill(breaks = MakeBreaks(binwidth = 5, exclude = 0)) +
-  facet_grid(y~x) +
-  scale_fill_divergent(
-    breaks = MakeBreaks(binwidth = 5, exclude = 0), 
-    low = scales::muted("#2d004b", l = 20),
-    mid = "white",
-    high = scales::muted("#7f3b08", l = 20),
-    name = "",
-    guide = guide_colorstrip(barheight = 10)
-  ) +
-  geom_contour_fill(data = grid, aes(lon, lat, z = z)) +
-  geom_polygon(data = ne_110m_coast,
-               inherit.aes = FALSE,
-               aes(x = long, y = lat, group = group),
-               color = "black",
-               fill = "transparent",
-               size = 0.5
-  ) +
-  coord_sf(xlim = range(grid$lon), ylim = range(grid$lat), expand = FALSE) +
-  scale_x_longitude(breaks = seq(30,360,60)) +
-  scale_y_latitude(breaks = c(-17.5,0,22.5)) +
-  theme_bw()
-
-grid$z <- runif(NROW(grid), -35, 20)
-
-
-ggplot(data = grid, aes(x=lon, y=lat, fill=z)) +
-  geom_raster() +
-  facet_grid(y~x) +
-  scale_fill_divergent(
-    breaks = MakeBreaks(binwidth = 5, exclude = 0), 
-    low = scales::muted("#2d004b", l = 20),
-    mid = "white",
-    high = scales::muted("#7f3b08", l = 20),
-    name = "",
-    guide = guide_colorstrip(barheight = 10)
-  ) +
-  geom_polygon(data = ne_110m_coast,
-               inherit.aes = FALSE,
-               aes(x = long, y = lat, group = group),
-               color = "black",
-               fill = "transparent",
-               size = 0.5
-  ) +
-  coord_sf(xlim = range(grid$lon), ylim = range(grid$lat), expand = FALSE) +
-  scale_x_longitude(breaks = seq(30,360,60)) +
-  scale_y_latitude(breaks = c(-17.5,0,22.5)) +
-  theme_bw()
-
-
+# Visualizing the nodes
 ggplot(data = grid, aes(x=lon, y=lat, z=OLR)) +
   geom_contour_fill(breaks = MakeBreaks(binwidth = 5, exclude = 0)) +
   facet_grid(y~x) +
@@ -106,6 +67,7 @@ ggplot(data = grid, aes(x=lon, y=lat, z=OLR)) +
   theme_bw()
 
 
+# Visualizing the filtered OLR anomalies averaged by nodes
 grid <- setNames(expand.grid(lon, lat, 1:n.centers, stringsAsFactors = FALSE), c("lon", "lat", "k"))
 grid$OLR <- NA
 
@@ -139,6 +101,7 @@ ggplot(data = grid, aes(x=lon, y=lat, z=OLR)) +
   theme_bw()
 
 
+# Quality of the SOM
 library(aweSOM)
 somQuality(som = som.out, traindat = OLR)
 
