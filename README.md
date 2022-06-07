@@ -160,7 +160,9 @@ Chollet, F., 2018: Deep learning with Python. Manning Publications Co, 361 pp.
 Goodfellow, I., Y. Bengio, and A. Courville, 2016: Deep learning. The MIT Press, 775 pp.
 
 Kelleher, J. D., 2019: Deep learning. The MIT Press, 280 pp.
-Ng, A. Y., 2004: Feature selection, <i>L</i><sub>1</sub> vs. L2 regularization, and rotational invariance. Proceedings of the twenty-first 
+
+Ng, A. Y., 2004: Feature selection, <i>L</i><sub>1</sub> vs. <i>L</i><sub>2</sub> regularization, and rotational invariance. Proceedings of 
+the twenty-first 
 international conference on Machine learning, ICML ’04, New York, NY, USA, Association for Computing Machinery, 78.
 
 Schmidhuber, J., 2015: Deep Learning in Neural Networks: An Overview. Neural Networks, 61, 85–117, 
