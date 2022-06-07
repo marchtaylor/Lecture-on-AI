@@ -5,31 +5,21 @@ Associated scripts and data
 
 ## Dataset
 
+Duchon, C. E., 1979: Lanczos Filtering in One and Two Dimensions. J. Appl. Meteor., 18, 1016–1022, 
+https://doi.org/10.1175/1520-0450(1979)018<1016:LFIOAT>2.0.CO;2.
 
-## <i>k</i>-means
 
-## Self Organizing Model
+
+## Machine Learning
 
 Alpaydin, E., 2021: Machine learning. Revised and updated edition. The MIT Press, 255 pp.
 
-Amari, S., 1980: Topographic organization of nerve fields. Bulletin of Mathematical Biology, 42, 339–364, 
-https://doi.org/10.1016/S0092-8240(80)80055-3.
+
+### <i>k</i>-means
 
 Carvalho, M. J., P. Melo-Gonçalves, J. C. Teixeira, and A. Rocha, 2016: Regionalization of Europe based on a K-Means 
 Cluster Analysis of the climate change of temperatures and precipitation. Phys. Chem. Earth Parts A/B/C, 94, 22–28, 
 https://doi.org/10.1016/j.pce.2016.05.001.
-
-Chattopadhyay, R., A. Vintzileos, and C. Zhang, 2013: A description of the Madden–Julian oscillation based on a 
-self-organizing map. J. Clim., 26, 1716–1732, https://doi.org/10.1175/JCLI-D-12-00123.1.
-
-Chollet, F., 2018: Deep learning with Python. Manning Publications Co, 361 pp.
-
-—— and others, 2015: Keras.
-
-——, and J. J. Allaire, 2018: Deep learning with R. Manning Publications Co, 335 pp.
-
-Duchon, C. E., 1979: Lanczos Filtering in One and Two Dimensions. J. Appl. Meteor., 18, 1016–1022, 
-https://doi.org/10.1175/1520-0450(1979)018<1016:LFIOAT>2.0.CO;2.
 
 Fauchereau, N., B. Pohl, C. J. C. Reason, M. Rouault, and Y. Richard, 2009: Recurrent daily OLR patterns in the Southern 
 Africa/Southwest Indian Ocean region, implications for South African rainfall and teleconnections. Clim. Dyn., 32, 
@@ -41,7 +31,48 @@ Meetings, Riverside, California.
 ——, 1965b: Cluster analysis of multivariate data: Efficiency versus interpretability of classification (Abstract). 
 Biometrics, 21, 768–769.
 
+
+
+### Self Organizing Map
+
+Amari, S., 1980: Topographic organization of nerve fields. Bulletin of Mathematical Biology, 42, 339–364, 
+https://doi.org/10.1016/S0092-8240(80)80055-3.
+
+Leloup, J., Z. Lachkar, J.-P. Boulanger, and S. Thiria, 2007: Detecting decadal changes in ENSO using neural networks. 
+Clim. Dyn., 28, 147–162, https://doi.org/10.1007/s00382-006-0173-1.
+
+——, M. Lengaigne, and J.-P. Boulanger, 2008: Twentieth century ENSO characteristics in the IPCC database. Clim. Dyn., 30, 
+277–291, https://doi.org/10.1007/s00382-007-0284-3.
+
+
+### Regression
+
+
+
+
+## Deep Learning
+
+Chollet, F., 2018: Deep learning with Python. Manning Publications Co, 361 pp.
+
+—— and others, 2015: Keras.
+
+——, and J. J. Allaire, 2018: Deep learning with R. Manning Publications Co, 335 pp.
+
 Goodfellow, I., Y. Bengio, and A. Courville, 2016: Deep learning. The MIT Press, 775 pp.
+
+
+
+
+
+
+
+Chattopadhyay, R., A. Vintzileos, and C. Zhang, 2013: A description of the Madden–Julian oscillation based on a 
+self-organizing map. J. Clim., 26, 1716–1732, https://doi.org/10.1175/JCLI-D-12-00123.1.
+
+
+
+
+
 
 Ham, Y.-G., J.-H. Kim, and J.-J. Luo, 2019: Deep learning for multi-year ENSO forecasts. Nature, 1–5, 
 https://doi.org/10.1038/s41586-019-1559-7.
@@ -62,11 +93,6 @@ Kuhn, M., 2020: caret: Classification and Regression Training.
 ——, and H. Wickham, 2020: Tidymodels: a collection of packages for modeling and machine learning using tidyverse 
 principles.
 
-Leloup, J., Z. Lachkar, J.-P. Boulanger, and S. Thiria, 2007: Detecting decadal changes in ENSO using neural networks. 
-Clim. Dyn., 28, 147–162, https://doi.org/10.1007/s00382-006-0173-1.
-
-——, M. Lengaigne, and J.-P. Boulanger, 2008: Twentieth century ENSO characteristics in the IPCC database. Clim. Dyn., 30, 
-277–291, https://doi.org/10.1007/s00382-007-0284-3.
 
 Liebmann, B., and C. A. Smith, 1996: Description of a Complete (Interpolated) Outgoing Longwave Radiation Dataset. Bull. 
 Amer. Meteor. Soc., 77, 1275–1277.
