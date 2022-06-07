@@ -1,4 +1,10 @@
-Associated scripts and data
+# Associated scripts and data
+## Machine Learning
+### Clustering
+### Regression
+## Deep Learning
+### DMI Prediction
+
 
 # Bibliography
 
