@@ -1,11 +1,10 @@
 Associated scripts and data
 
-Bibliography
-----------------
+# Bibliography
 
 
-Dataset
----
+## Dataset
+
 
 Alpaydin, E., 2021: Machine learning. Revised and updated edition. The MIT Press, 255 pp.
 
