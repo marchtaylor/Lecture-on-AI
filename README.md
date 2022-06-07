@@ -33,6 +33,8 @@ https://doi.org/10.1175/1520-0493(2004)132<1917:AARMMI>2.0.CO;2.
 
 Alpaydin, E., 2021: Machine learning. Revised and updated edition. The MIT Press, 255 pp.
 
+Azure Machine Learning Team, 2021: Machine Learning Algorithm Cheat Sheet for Azure Machine Learning designer. Available at 
+https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-july-2021.pdf 
 
 ### <i>k</i>-means
 #### Algorithm
