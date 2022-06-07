@@ -52,7 +52,7 @@ padding <- "same"
 layer_activation <- "relu"
 
 # input layer
-inputs <- layer_input(shape = input_shape, name = "OI_SST")
+inputs <- layer_input(shape = input_shape, name = "IO_SST")
 
 # outputs compose input + dense layers
 predictions <- inputs %>%
