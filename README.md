@@ -6,6 +6,10 @@ Associated scripts and data
 ## Dataset
 
 
+## <i>k</i>-means
+
+## Self Organizing Model
+
 Alpaydin, E., 2021: Machine learning. Revised and updated edition. The MIT Press, 255 pp.
 
 Amari, S., 1980: Topographic organization of nerve fields. Bulletin of Mathematical Biology, 42, 339–364, 
