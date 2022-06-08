@@ -20,25 +20,18 @@ Final selection after feature selection is 10 predictors. Model are trained with
 |ne_110m_land_GCM.*|Land polygons including major islands form Natural Earth|
 
 ### Regression
-__Data_for_caret.RData__: Predictors and predictand
-
-__bartMachine.R__: Bayesian regression
-
-__catboost.R__: Tree boosting regression
-
-__mlp.R__: Multi-layer perceptron (artificial neural network)
-
-__nnet.R__: Single-layer perceptron (artificial neural network)
-
-__rf.R__: Random forest
-
-__svml.R__: Support vector machine (linear kernel)
-
-__svmr.R__: Support vector machine (radial kernel)
-
-__xgbl.R__: Extreme gradient boosting (linear)
-
-__xgbt.R__: Extreme gradient boosting (tree-based)
+| File | Description |
+|---|---|
+|Data_for_caret.RData|Predictors and predictand|
+|bartMachine.R|Bayesian regression|
+|catboost.R|Tree boosting regression|
+|mlp.R|Multi-layer perceptron (artificial neural network)|
+|nnet.R|Single-layer perceptron (artificial neural network)|
+|rf.R|Random forest|
+|svml.R|Support vector machine (linear kernel)|
+|svmr.R|Support vector machine (radial kernel)|
+|xgbl.R|Extreme gradient boosting (linear)|
+|xgbt.R|Extreme gradient boosting (tree-based)|
 
 
 ## Deep Learning
@@ -55,18 +48,15 @@ Each image is 22x20 in resolution
 
 
 ### DMI Prediction
-__IO.SST_ERSST.v5.-1.RData__: SST anomalies with 1 month lag
-
-__IO.SST_ERSST.v5.-3.RData__: SST anomalies with 3 months lag
-
-__IO.SST_ERSST.v5.-7.RData__: SST anomalies with 7 months lag
-
-__C10C10D08-lr_0.0001.hdf5__: CNN model with 10 filters of the first convolutional layer, 10 filters for the second 
-convolutional filter and 8 nodes in the densely connected layer
-
-__CxxCxxDzz.R__: CNN model to reproduce Liu et al. (2021)
-
-__GradCAM.R__: Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)
+| File | Description |
+|---|---|
+|IO.SST_ERSST.v5.-1.RData|SST anomalies with 1 month lag|
+|IO.SST_ERSST.v5.-3.RData|SST anomalies with 3 months lag|
+|IO.SST_ERSST.v5.-7.RData|SST anomalies with 7 months lag|
+|C10C10D08-lr_0.0001.hdf5|CNN model with 10 filters of the first convolutional layer, 10 filters for the second 
+convolutional filter and 8 nodes in the densely connected layer|
+|CxxCxxDzz.R|CNN model to reproduce Liu et al. (2021)|
+|GradCAM.R|Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)|
 
 
 # Software
