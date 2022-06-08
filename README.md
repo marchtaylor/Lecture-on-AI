@@ -9,14 +9,12 @@ _Regression_: Predictors are the sea-surface temperature anomalies in January. P
 ### Clustering
 
 "kmeans.OLR.R": _k_-means on OLR
+
 "SOM.OLR.R": Self-Organizing Map on OLR
 
 folr.passband.pentad.mean.Rdata
 
-"ne_110m_land_GCM.dbf"
-"ne_110m_land_GCM.prj"
-"ne_110m_land_GCM.shp"
-"ne_110m_land_GCM.shx"
+"ne_110m_land_GCM.*": 
 
 ### Regression
 ## Deep Learning
