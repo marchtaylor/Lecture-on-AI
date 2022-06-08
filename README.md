@@ -64,6 +64,16 @@ CxxCxxDzz.R: CNN model to reproduce Liu et al. (2021)
 GradCAM.R: Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)
 
 
+# Software
+## R
+https://cloud.r-project.org/
+https://cloud.r-project.org/manuals.html
+
+## catboost
+https://catboost.ai/en/docs/concepts/r-installation
+
+## keras
+https://cran.r-project.org/web/packages/keras/vignettes/index.html
 
 # Bibliography
 
