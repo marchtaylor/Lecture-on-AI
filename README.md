@@ -4,7 +4,9 @@ You will find scripts and data to perform simple machine learning and deep learn
 ## Machine Learning
 _Clustering_: For the period 1980-2009, daily OLR (Liebmann and Smith 1996) filtered with a 20-100-day Lanczos bandpass filter (Duchon 1979, CLIVAR MJO Workgroup 2009), over the tropical region (0 – 360, 17.5°S – 22.5°N). Anomalies are averaged every 5 days from January to December (73 pentads) x 30 years. As a result, a matrix consisting of 2190 pentads of data and 2448 grid points.
 
-_Regression_: Predictors are the sea-surface temperature anomalies in January. Predictand is the surface air temperature anomalies in January in the Kantō Region (Japan) . Two subset training (27 years x 70) and validation (10 years x 70). Final selection after feature selection is 10 predictors 
+_Regression_: Predictors are the sea-surface temperature anomalies in January. Predictand is the surface air temperature 
+anomalies in January in the Kantō Region (Japan), split into training (27 years x 70) and validation (10 years x 70) subsets. 
+Final selection after feature selection is 10 predictors. Model are trained with the the final selection of predictors.
 
 ### Clustering
 folr.passband.pentad.mean.Rdata: Filtered OLR anomalies
