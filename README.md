@@ -2,9 +2,10 @@
 You will find scripts and data to perform simple machine learning and deep learning. 
 
 ## Machine Learning
-<u>Clustering</u>: For the period 1980-2009, daily OLR (Liebmann and Smith 1996) filtered with a 20-100-day Lanczos bandpass filter (Duchon 1979, CLIVAR MJO Workgroup 2009), over the tropical region (0 – 360, 17.5°S – 22.5°N). Anomalies are averaged every 5 days from January to December (73 pentads) x 30 years. As a result, a matrix consisting of 2190 pentads of data and 2448 grid points.
+_Clustering_: For the period 1980-2009, daily OLR (Liebmann and Smith 1996) filtered with a 20-100-day Lanczos bandpass filter (Duchon 1979, CLIVAR MJO Workgroup 2009), over the tropical region (0 – 360, 17.5°S – 22.5°N). Anomalies are averaged every 5 days from January to December (73 pentads) x 30 years. As a result, a matrix consisting of 2190 pentads of data and 2448 grid points.
 
-<u>Regression</u>:
+_Regression_: Predictors are the sea-surface temperature anomalies in January by SINTEX-F2 (November 1st initialisation). Predictand is the surface air temperature anomalies in January in the Kanto Region (Japan) 
+
 ### Clustering
 ### Regression
 ## Deep Learning
