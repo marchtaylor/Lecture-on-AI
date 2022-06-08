@@ -68,14 +68,15 @@ GradCAM.R: Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)
 
 # Software
 ## R
-https://cloud.r-project.org/
-https://cloud.r-project.org/manuals.html
+Download: https://cloud.r-project.org/
+
+Manuals: https://cloud.r-project.org/manuals.html
 
 ## catboost
-https://catboost.ai/en/docs/concepts/r-installation
+Installation instructions: https://catboost.ai/en/docs/concepts/r-installation
 
 ## keras
-https://cran.r-project.org/web/packages/keras/vignettes/index.html
+Installation instructions: https://cran.r-project.org/web/packages/keras/vignettes/index.html
 
 # Bibliography
 
