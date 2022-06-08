@@ -12,7 +12,9 @@ anomalies in January in the Kantō Region (Japan), split into training (27 years
 Final selection after feature selection is 10 predictors. Model are trained with the the final selection of predictors.
 
 ### Clustering
-__folr.passband.pentad.mean.Rdata__: Filtered OLR anomalies
+| File | Description |
+|---|---|
+|__folr.passband.pentad.mean.Rdata__| Filtered OLR anomalies|
 
 __kmeans.OLR.R__: _k_-means on OLR
 
