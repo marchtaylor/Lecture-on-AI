@@ -14,13 +14,10 @@ Final selection after feature selection is 10 predictors. Model are trained with
 ### Clustering
 | File | Description |
 |---|---|
-|__folr.passband.pentad.mean.Rdata__| Filtered OLR anomalies|
-
-__kmeans.OLR.R__: _k_-means on OLR
-
-__SOM.OLR.R__: Self-Organizing Map on OLR
-
-__ne_110m_land_GCM.*__: Land polygons including major islands form Natural Earth
+|folr.passband.pentad.mean.Rdata|Filtered OLR anomalies|
+|kmeans.OLR.R|_k_-means on OLR|
+|SOM.OLR.R|Self-Organizing Map on OLR|
+|ne_110m_land_GCM.*|Land polygons including major islands form Natural Earth|
 
 ### Regression
 __Data_for_caret.RData__: Predictors and predictand
