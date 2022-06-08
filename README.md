@@ -2,41 +2,44 @@
 You will find scripts and data to perform simple machine learning and deep learning. 
 
 ## Machine Learning
-_Clustering_: For the period 1980-2009, daily OLR (Liebmann and Smith 1996) filtered with a 20-100-day Lanczos bandpass filter (Duchon 1979, CLIVAR MJO Workgroup 2009), over the tropical region (0 – 360, 17.5°S – 22.5°N). Anomalies are averaged every 5 days from January to December (73 pentads) x 30 years. As a result, a matrix consisting of 2190 pentads of data and 2448 grid points.
+<ins>Clustering</ins>: For the period 1980-2009, daily OLR (Liebmann and Smith 1996) filtered with a 20-100-day Lanczos 
+bandpass 
+filter (Duchon 1979, CLIVAR MJO Workgroup 2009), over the tropical region (0 – 360, 17.5°S – 22.5°N). Anomalies are averaged every 5 days from January to December (73 pentads) x 30 years. As a result, a matrix consisting of 2190 pentads of data and 2448 grid points.
 
-_Regression_: Predictors are the sea-surface temperature anomalies in January. Predictand is the surface air temperature 
+<ins>Regression</ins>: Predictors are the sea-surface temperature anomalies in January. Predictand is the surface air 
+temperature 
 anomalies in January in the Kantō Region (Japan), split into training (27 years x 70) and validation (10 years x 70) subsets. 
 Final selection after feature selection is 10 predictors. Model are trained with the the final selection of predictors.
 
 ### Clustering
-<ins>__folr.passband.pentad.mean.Rdata__</ins>: Filtered OLR anomalies
+__folr.passband.pentad.mean.Rdata__: Filtered OLR anomalies
 
-"kmeans.OLR.R": _k_-means on OLR
+__kmeans.OLR.R__: _k_-means on OLR
 
-"SOM.OLR.R": Self-Organizing Map on OLR
+__SOM.OLR.R__: Self-Organizing Map on OLR
 
-"ne_110m_land_GCM.*": Land polygons including major islands form Natural Earth
+__ne_110m_land_GCM.*__: Land polygons including major islands form Natural Earth
 
 ### Regression
-"Data_for_caret.RData": Predictors and predictand
+__Data_for_caret.RData__: Predictors and predictand
 
-"bartMachine.R": Bayesian regression
+__bartMachine.R__: Bayesian regression
 
-"catboost.R": Tree boosting regression
+__catboost.R__: Tree boosting regression
 
-"mlp.R: Multi-layer perceptron (artificial neural network)
+__mlp.R__: Multi-layer perceptron (artificial neural network)
 
-"nnet.R": Single-layer perceptron (artificial neural network)
+__nnet.R__: Single-layer perceptron (artificial neural network)
 
-"rf.R": Random forest
+__rf.R__: Random forest
 
-"svml.R": Support vector machine (linear kernel)
+__svml.R__: Support vector machine (linear kernel)
 
-"svmr.R": Support vector machine (radial kernel)
+__svmr.R__: Support vector machine (radial kernel)
 
-"xgbl.R": Extreme gradient boosting (linear)
+__xgbl.R__: Extreme gradient boosting (linear)
 
-"xgbt.R": Extreme gradient boosting (tree-based)
+__xgbt.R__: Extreme gradient boosting (tree-based)
 
 
 ## Deep Learning
@@ -53,17 +56,18 @@ Each image is 22x20 in resolution
 
 
 ### DMI Prediction
-"IO.SST_ERSST.v5.-1.RData": SST anomalies with 1 month lag
+__IO.SST_ERSST.v5.-1.RData__: SST anomalies with 1 month lag
 
-"IO.SST_ERSST.v5.-3.RData": SST anomalies with 3 months lag
+__IO.SST_ERSST.v5.-3.RData__: SST anomalies with 3 months lag
 
-"IO.SST_ERSST.v5.-7.RData": SST anomalies with 7 months lag
+__IO.SST_ERSST.v5.-7.RData__: SST anomalies with 7 months lag
 
-"C10C10D08-lr_0.0001.hdf5": CNN model with 10 filters of the first convolutional layer, 10 filters for the second convolutional filter and 8 nodes in the densely connected layer
+__C10C10D08-lr_0.0001.hdf5__: CNN model with 10 filters of the first convolutional layer, 10 filters for the second 
+convolutional filter and 8 nodes in the densely connected layer
 
-CxxCxxDzz.R: CNN model to reproduce Liu et al. (2021)
+__CxxCxxDzz.R__: CNN model to reproduce Liu et al. (2021)
 
-GradCAM.R: Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)
+__GradCAM.R__: Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)
 
 
 # Software
