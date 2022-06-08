@@ -51,6 +51,17 @@ Each image is 22x20 in resolution
 
 
 ### DMI Prediction
+"IO.SST_ERSST.v5.-1.RData": SST anomalies with 1 month lag
+
+"IO.SST_ERSST.v5.-3.RData": SST anomalies with 3 months lag
+
+"IO.SST_ERSST.v5.-7.RData": SST anomalies with 7 months lag
+
+"C10C10D08-lr_0.0001.hdf5": CNN model with 10 filters of the first convolutional layer, 10 filters for the second convolutional filter and 8 nodes in the densely connected layer
+
+CxxCxxDzz.R: CNN model to reproduce Liu et al. (2021)
+
+GradCAM.R: Visual explanation of CNN with Grad-CAM (Selvaraju et al. 2020)
 
 
 
